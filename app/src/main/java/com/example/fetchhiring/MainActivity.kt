@@ -3,6 +3,7 @@ package com.example.fetchhiring
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,13 +17,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val hiringViewModel by viewModels<HiringViewModel>()
             FetchHiringTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HiringListScreen("Fetch Hiring Team!")
+                    HiringListScreen(hiringViewModel)
                 }
             }
         }
@@ -33,6 +34,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     FetchHiringTheme {
-        HiringListScreen("Android")
+        HiringListScreen(viewModel = HiringViewModel())
     }
 }
