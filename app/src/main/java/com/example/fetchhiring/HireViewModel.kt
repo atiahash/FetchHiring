@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 class HireViewModel(
     private val hiringRepository: HireRepository = HireRepository
 ): ViewModel() {
-    private val _hiringListState = MutableStateFlow<List<HireGroups>>(emptyList())
-    val hiringListState: StateFlow<List<HireGroups>> = _hiringListState
+    private val _hiringListState = MutableStateFlow<UiState<List<HireGroups>>>(UiState.Loading())
+    val hiringListState: StateFlow<UiState<List<HireGroups>>> = _hiringListState
 
     init {
         initFetchHireData()
@@ -21,13 +21,13 @@ class HireViewModel(
 
     private fun initFetchHireData() {
         viewModelScope.launch {
-            when (val response = hiringRepository.getHiringList()) {
+            _hiringListState.value = when (val response = hiringRepository.getHiringList()) {
                 is NetworkResult.Success -> {
                     val hireList: List<Hire> = filterNamesAndSortByListId(response.data)
-                    _hiringListState.value = groupByListId(hireList)
+                    UiState.Success(groupByListId(hireList))
                 }
                 else -> {
-                    // TODO: handle Error
+                    UiState.Error()
                 }
             }
         }

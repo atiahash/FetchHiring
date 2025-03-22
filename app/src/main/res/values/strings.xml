@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Fetch Hiring</string>
     <string name="group">Group %1s</string>
+    <string name="generic_error_message">"Sorry, something went wrong.\nPlease try again!"</string>
 </resources>
