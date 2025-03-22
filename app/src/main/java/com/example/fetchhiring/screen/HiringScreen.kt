@@ -23,7 +23,7 @@ import com.example.fetchhiring.ui.theme.Typography
 @Composable
 fun HiringListScreen(viewModel: HiringViewModel, modifier: Modifier = Modifier) {
     val list = viewModel.hiringListState.collectAsStateWithLifecycle()
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(list.value) { hire ->
             Text(
                 text = stringResource(R.string.group, hire.listId),
@@ -31,7 +31,6 @@ fun HiringListScreen(viewModel: HiringViewModel, modifier: Modifier = Modifier) 
                 style = Typography.titleMedium
             )
             HireItems(names = hire.names)
-            // Divider(color = Color.LightGray, thickness = 1.dp)
         }
     }
 }
