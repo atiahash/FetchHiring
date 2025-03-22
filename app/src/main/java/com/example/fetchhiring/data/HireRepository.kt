@@ -9,7 +9,11 @@ object HireRepository {
         hireService = hiringServiceClient
     }
 
-    suspend fun getHiringList() = withContext(Dispatchers.IO) {
-        hireService.getHireList()
+    suspend fun getHiringList(): NetworkResult<List<Hire>> = withContext(Dispatchers.IO) {
+        return@withContext try {
+            NetworkResult.Success(hireService.getHireList())
+        } catch (exception: Exception) {
+            NetworkResult.Error(exception = exception)
+        }
     }
 }

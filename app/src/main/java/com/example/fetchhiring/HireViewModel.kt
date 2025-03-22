@@ -2,8 +2,9 @@ package com.example.fetchhiring
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fetchhiring.data.Hire
 import com.example.fetchhiring.data.HireRepository
-import kotlinx.coroutines.CoroutineScope
+import com.example.fetchhiring.data.NetworkResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -15,25 +16,38 @@ class HireViewModel(
     val hiringListState: StateFlow<List<HireGroups>> = _hiringListState
 
     init {
-        fetchHiringData()
+        initFetchHireData()
     }
 
-    private fun fetchHiringData() {
+    private fun initFetchHireData() {
         viewModelScope.launch {
-            val hireList = hiringRepository.getHiringList()
-                .filter { hire ->
-                    !hire.name.isNullOrEmpty()
+            when (val response = hiringRepository.getHiringList()) {
+                is NetworkResult.Success -> {
+                    val hireList: List<Hire> = filterNamesAndSortByListId(response.data)
+                    _hiringListState.value = groupByListId(hireList)
                 }
-                .sortedBy {
-                    it.listId
+                else -> {
+                    // TODO: handle Error
                 }
+            }
+        }
+    }
 
-            _hiringListState.value = hireList
-                .groupBy { it.listId }
-                .map { mapOfNamesByListId ->
-                    val names = mapOfNamesByListId.value.map { it.name }.sortedBy { it }
-                    HireGroups(mapOfNamesByListId.key, names)
-                }
+    private fun groupByListId(hireList: List<Hire>): List<HireGroups> {
+        val map = hireList
+            .groupBy { it.listId }
+            .map { mapOfNamesByListId ->
+                val names = mapOfNamesByListId.value.map { it.name }.sortedBy { it }
+                HireGroups(mapOfNamesByListId.key, names)
+            }
+        return map
+    }
+
+    private fun filterNamesAndSortByListId(list: List<Hire>): List<Hire> {
+        return list.filter { hire ->
+            !hire.name.isNullOrEmpty()
+        }.sortedBy {
+            it.listId
         }
     }
 }
