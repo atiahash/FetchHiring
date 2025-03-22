@@ -3,11 +3,14 @@ package com.example.fetchhiring
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fetchhiring.data.HireRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class HireViewModel(private val hiringRepository: HireRepository = HireRepository): ViewModel() {
+class HireViewModel(
+    private val hiringRepository: HireRepository = HireRepository
+): ViewModel() {
     private val _hiringListState = MutableStateFlow<List<HireGroups>>(emptyList())
     val hiringListState: StateFlow<List<HireGroups>> = _hiringListState
 

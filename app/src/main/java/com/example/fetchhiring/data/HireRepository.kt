@@ -12,5 +12,4 @@ object HireRepository {
     suspend fun getHiringList() = withContext(Dispatchers.IO) {
         hireService.getHireList()
     }
-
 }
