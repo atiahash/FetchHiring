@@ -33,7 +33,6 @@ import com.example.fetchhiring.HireViewModel
 import com.example.fetchhiring.R
 import com.example.fetchhiring.UiState
 import com.example.fetchhiring.ui.theme.Typography
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun HiringListScreen(viewModel: HireViewModel, modifier: Modifier = Modifier) {
@@ -125,7 +124,7 @@ fun HireItems(names: List<String?>) {
             Box(modifier = Modifier
                 .padding(4.dp)
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color.Gray)) {
+                .background(Color.LightGray)) {
                 Text(
                     text = "$name",
                     modifier = Modifier.padding(16.dp))

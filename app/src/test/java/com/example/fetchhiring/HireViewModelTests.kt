@@ -3,6 +3,7 @@ package com.example.fetchhiring
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.fetchhiring.data.Hire
 import com.example.fetchhiring.data.HireRepository
+import com.example.fetchhiring.data.NetworkResult
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -36,7 +37,7 @@ class HireViewModelTests {
     @Test
     fun `when viewModel is instantiated, fetch of data is called`() = runTest {
         hireViewModel = HireViewModel(mockHireRepository)
-        coEvery { mockHireRepository.getHiringList() } returns emptyList()
+        coEvery { mockHireRepository.getHiringList() } returns NetworkResult.Success(emptyList())
         advanceUntilIdle()
         coVerify(exactly = 1) { mockHireRepository.getHiringList() }
     }
@@ -44,9 +45,14 @@ class HireViewModelTests {
     @Test
     fun `when viewModel is instantiated, hire list is fetched, filtered, and sorted `() = runTest {
         hireViewModel = HireViewModel(mockHireRepository)
-        coEvery { mockHireRepository.getHiringList() } returns getMockHireList()
+        coEvery { mockHireRepository.getHiringList() } returns NetworkResult.Success(getMockHireList())
         advanceUntilIdle()
-        Assert.assertEquals(getFilteredData(), hireViewModel.hiringListState.value)
+
+        val uiState = hireViewModel.hiringListState.value
+        Assert.assertTrue(uiState is UiState.Success)
+
+        val resultData: List<HireGroups> = (uiState as UiState.Success).data
+        Assert.assertEquals(getFilteredData(), resultData)
     }
 
     @After
