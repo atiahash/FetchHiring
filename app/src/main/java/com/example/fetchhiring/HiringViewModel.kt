@@ -36,5 +36,5 @@ class HiringViewModel(private val hiringRepository: HiringRepository = HiringRep
     }
 }
 
-data class HireGroups(val listId: Int, val name: List<String?> = emptyList())
+data class HireGroups(val listId: Int, val names: List<String?> = emptyList())
 
