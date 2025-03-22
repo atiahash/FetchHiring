@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val hiringViewModel by viewModels<HiringViewModel>()
+            val hiringViewModel by viewModels<HireViewModel>()
             FetchHiringTheme {
                 Scaffold(
                     topBar = {
@@ -47,6 +47,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     FetchHiringTheme {
-        HiringListScreen(viewModel = HiringViewModel())
+        HiringListScreen(viewModel = HireViewModel())
     }
 }

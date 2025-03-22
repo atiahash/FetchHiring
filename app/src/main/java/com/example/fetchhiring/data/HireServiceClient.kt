@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object HiringServiceClient {
+object HireServiceClient {
     // https://fetch-hiring.s3.amazonaws.com/hiring.json
     private const val BASE_URL ="https://fetch-hiring.s3.amazonaws.com/"
 
