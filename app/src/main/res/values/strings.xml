@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FetchHiring</string>
+    <string name="group">Group %1s</string>
 </resources>
