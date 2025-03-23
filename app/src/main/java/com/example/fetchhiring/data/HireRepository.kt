@@ -4,14 +4,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 object HireRepository {
-    private lateinit var hireService: HireService
-    fun init(hiringServiceClient: HireService) {
-        hireService = hiringServiceClient
+    private lateinit var hireApiService: HireApiService
+    fun inject(hiringServiceClient: HireApiService) {
+        hireApiService = hiringServiceClient
     }
 
     suspend fun getHiringList(): NetworkResult<List<Hire>> = withContext(Dispatchers.IO) {
         return@withContext try {
-            NetworkResult.Success(hireService.getHireList())
+            NetworkResult.Success(hireApiService.getHireList())
         } catch (exception: Exception) {
             NetworkResult.Error(exception = exception)
         }
