@@ -14,6 +14,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.fetchhiring.navigation.HireNavigation
 import com.example.fetchhiring.screen.HiringListScreen
 import com.example.fetchhiring.ui.theme.FetchHiringTheme
 import com.example.fetchhiring.viewmodel.HireViewModel
@@ -37,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                 ) { innerPadding ->
-                    HiringListScreen(viewModel = hiringViewModel, modifier = Modifier.padding(innerPadding))
+                    HireNavigation(viewModel = hiringViewModel, modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -48,6 +50,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     FetchHiringTheme {
-        HiringListScreen(viewModel = HireViewModel())
+        HiringListScreen(navController = rememberNavController(), viewModel = HireViewModel())
     }
 }

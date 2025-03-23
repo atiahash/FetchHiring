@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.fetchhiring.viewmodel.HireGroups
 import com.example.fetchhiring.viewmodel.HireViewModel
 import com.example.fetchhiring.R
@@ -35,7 +36,7 @@ import com.example.fetchhiring.viewmodel.UiState
 import com.example.fetchhiring.ui.theme.Typography
 
 @Composable
-fun HiringListScreen(viewModel: HireViewModel, modifier: Modifier = Modifier) {
+fun HiringListScreen(navController: NavController, viewModel: HireViewModel, modifier: Modifier = Modifier) {
     val result = viewModel.hiringListState.collectAsStateWithLifecycle()
     when (val hireList = result.value) {
         is UiState.Loading -> {
