@@ -1,4 +1,4 @@
-package com.example.fetchhiring
+package com.example.fetchhiring.viewmodel
 
 sealed class UiState<T> {
     class Loading<T>: UiState<T>()

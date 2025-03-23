@@ -4,6 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.fetchhiring.data.Hire
 import com.example.fetchhiring.data.HireRepository
 import com.example.fetchhiring.data.NetworkResult
+import com.example.fetchhiring.viewmodel.HireGroups
+import com.example.fetchhiring.viewmodel.HireViewModel
+import com.example.fetchhiring.viewmodel.UiState
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

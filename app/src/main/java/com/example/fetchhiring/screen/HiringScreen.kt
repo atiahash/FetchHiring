@@ -28,10 +28,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.fetchhiring.HireGroups
-import com.example.fetchhiring.HireViewModel
+import com.example.fetchhiring.viewmodel.HireGroups
+import com.example.fetchhiring.viewmodel.HireViewModel
 import com.example.fetchhiring.R
-import com.example.fetchhiring.UiState
+import com.example.fetchhiring.viewmodel.UiState
 import com.example.fetchhiring.ui.theme.Typography
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.fetchhiring
+package com.example.fetchhiring.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
