@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
-import java.lang.Exception
 
 class NetworkConnectivityInterceptor(private val context: Context): Interceptor {
 
