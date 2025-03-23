@@ -1,6 +1,5 @@
 package com.example.fetchhiring.screen
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +17,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,11 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.fetchhiring.R
+import com.example.fetchhiring.navigation.HireScreens
+import com.example.fetchhiring.ui.theme.Typography
 import com.example.fetchhiring.viewmodel.HireGroups
 import com.example.fetchhiring.viewmodel.HireViewModel
-import com.example.fetchhiring.R
 import com.example.fetchhiring.viewmodel.UiState
-import com.example.fetchhiring.ui.theme.Typography
 
 @Composable
 fun HiringListScreen(navController: NavController, viewModel: HireViewModel, modifier: Modifier = Modifier) {
@@ -43,7 +44,9 @@ fun HiringListScreen(navController: NavController, viewModel: HireViewModel, mod
             LoadingIndicator(modifier)
         }
         is UiState.Success -> {
-            HireList(modifier = modifier, list = hireList.data)
+            HireList(modifier = modifier, list = hireList.data) { listId ->
+                navController.navigate(route = HireScreens.HireGroupedListScreen.name+"/$listId")
+            }
         }
         is UiState.Error -> {
             GenericErrorMessage(modifier)
@@ -84,7 +87,8 @@ private fun LoadingIndicator(modifier: Modifier) {
 @Composable
 private fun HireList(
     modifier: Modifier,
-    list: List<HireGroups>
+    list: List<HireGroups>,
+    onNavigateClicked: (Int) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
         items(list) { hire ->
@@ -100,17 +104,15 @@ private fun HireList(
                     style = Typography.titleMedium
                 )
                 Spacer(Modifier.weight(1f))
-                Icon(
-                    imageVector = Icons.Filled.KeyboardArrowRight,
-                    modifier = Modifier.padding(
-                        top = 8.dp,
-                        bottom = 8.dp,
-                        end = 16.dp,
-                        start = 16.dp
-                    ),
-                    tint = Color.Black,
-                    contentDescription = "Navigate into Group ${hire.listId} List"
-                )
+                IconButton(onClick = {
+                    onNavigateClicked(hire.listId)
+                }) {
+                    Icon(
+                        imageVector = Icons.Filled.KeyboardArrowRight,
+                        tint = Color.Black,
+                        contentDescription = "Navigate into Group ${hire.listId} List"
+                    )
+                }
             }
             HireItems(names = hire.names)
             Divider(modifier = Modifier.padding(top = 8.dp, bottom = 4.dp), color = Color.LightGray)
