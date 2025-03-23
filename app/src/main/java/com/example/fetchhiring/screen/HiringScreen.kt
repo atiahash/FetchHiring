@@ -45,7 +45,7 @@ fun HiringListScreen(navController: NavController, viewModel: HireViewModel, mod
         }
         is UiState.Success -> {
             HireList(modifier = modifier, list = hireList.data) { listId ->
-                navController.navigate(route = HireScreens.HireGroupedListScreen.name+"/$listId")
+                navController.navigate(route = HireScreens.HireGroupDetailsScreen.name+"/$listId")
             }
         }
         is UiState.Error -> {

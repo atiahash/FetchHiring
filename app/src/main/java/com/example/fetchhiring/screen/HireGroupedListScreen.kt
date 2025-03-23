@@ -8,8 +8,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun HireGroupedListScreen(navHostController: NavHostController, listId: Int?) {
+fun HireGroupListDetailsScreen(
+    navHostController: NavHostController,
+    listId: Int?,
+    modifier: Modifier
+) {
     Text(
         text = "Group List $listId ",
-        modifier = Modifier.padding(16.dp))
+        modifier = modifier.padding(16.dp))
 }

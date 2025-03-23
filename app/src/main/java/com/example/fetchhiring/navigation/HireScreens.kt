@@ -4,12 +4,12 @@ import java.lang.IllegalArgumentException
 
 enum class HireScreens {
     HomeScreen,
-    HireGroupedListScreen;
+    HireGroupDetailsScreen;
 
     companion object {
         fun fromRoute(route: String?): HireScreens = when (route?.substringBefore("/")) {
             HomeScreen.name -> HomeScreen
-            HireGroupedListScreen.name -> HireGroupedListScreen
+            HireGroupDetailsScreen.name -> HireGroupDetailsScreen
             null -> HomeScreen
             else -> throw IllegalArgumentException("Route $route is not found")
         }

@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.fetchhiring.screen.HireGroupedListScreen
+import com.example.fetchhiring.screen.HireGroupListDetailsScreen
 import com.example.fetchhiring.screen.HiringListScreen
 import com.example.fetchhiring.viewmodel.HireViewModel
 
@@ -23,10 +23,10 @@ fun HireNavigation(viewModel: HireViewModel, modifier: Modifier) {
         }
 
         // ..../HireGroupedListScreen/listId=listId
-        composable(HireScreens.HireGroupedListScreen.name+"/{listId}",
+        composable(HireScreens.HireGroupDetailsScreen.name+"/{listId}",
             arguments = listOf(navArgument(name="listId") { type = NavType.IntType })
         ) { backStackEntry ->
-            HireGroupedListScreen(navController, backStackEntry.arguments?.getInt("listId"))
+            HireGroupListDetailsScreen(navController, backStackEntry.arguments?.getInt("listId"), modifier)
         }
 
     }
