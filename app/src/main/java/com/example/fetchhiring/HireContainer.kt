@@ -21,7 +21,7 @@ class HireContainer(context: Context) {
     private fun initializeHireApiClient(context: Context) {
         val networkInterceptor = NetworkConnectivityInterceptor(context)
         val httpLoggingInterceptor = if (!isProdBuild()) {
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
         } else {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         }
@@ -38,7 +38,6 @@ class HireContainer(context: Context) {
     }
 
     private fun isProdBuild(): Boolean {
-        //TODO: get from BuildConfig
-        return false
+        return !BuildConfig.DEBUG
     }
 }
