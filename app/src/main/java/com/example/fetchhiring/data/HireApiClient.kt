@@ -9,8 +9,7 @@ object HireApiClient {
     private lateinit var okHttpClient: OkHttpClient
     private lateinit var gsonConverterFactory: GsonConverterFactory
 
-    val hireApiService by lazy {
-
+    val hireApiService: Retrofit by lazy {
         return@lazy Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
