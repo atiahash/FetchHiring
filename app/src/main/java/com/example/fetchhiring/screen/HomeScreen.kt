@@ -1,6 +1,5 @@
 package com.example.fetchhiring.screen
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
