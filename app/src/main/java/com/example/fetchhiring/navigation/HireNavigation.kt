@@ -26,7 +26,7 @@ fun HireNavigation(viewModel: HireViewModel, modifier: Modifier) {
         composable(HireScreens.HireGroupDetailsScreen.name+"/{listId}",
             arguments = listOf(navArgument(name="listId") { type = NavType.IntType })
         ) { backStackEntry ->
-            HireGroupListDetailsScreen(navController, backStackEntry.arguments?.getInt("listId"), modifier)
+            HireGroupListDetailsScreen(viewModel, backStackEntry.arguments?.getInt("listId"), modifier, navController)
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.fetchhiring.screen
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,7 +56,7 @@ fun HomeScreen(navController: NavController, viewModel: HireViewModel, modifier:
 }
 
 @Composable
-private fun GenericErrorMessage(modifier: Modifier) {
+fun GenericErrorMessage(modifier: Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -72,7 +73,7 @@ private fun GenericErrorMessage(modifier: Modifier) {
 }
 
 @Composable
-private fun LoadingIndicator(modifier: Modifier) {
+fun LoadingIndicator(modifier: Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -124,15 +125,25 @@ private fun HireList(
 fun HireItems(names: List<String?>) {
     LazyRow {
         items(names) { name ->
-            Box(modifier = Modifier
-                .padding(4.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .background(Color.LightGray)) {
-                Text(
-                    text = "$name",
-                    modifier = Modifier.padding(16.dp))
-            }
+            HireListItem(name)
         }
+    }
+}
+
+@Composable
+fun HireListItem(name: String?) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(4.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "$name",
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Center)
     }
 }
 
