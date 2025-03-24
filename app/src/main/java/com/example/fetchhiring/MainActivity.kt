@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.fetchhiring.navigation.HireNavigation
-import com.example.fetchhiring.screen.HiringListScreen
+import com.example.fetchhiring.screen.HomeScreen
 import com.example.fetchhiring.ui.theme.FetchHiringTheme
 import com.example.fetchhiring.viewmodel.HireViewModel
 
@@ -50,6 +50,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     FetchHiringTheme {
-        HiringListScreen(navController = rememberNavController(), viewModel = HireViewModel())
+        HomeScreen(navController = rememberNavController(), viewModel = HireViewModel())
     }
 }

@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.fetchhiring.screen.HireGroupListDetailsScreen
-import com.example.fetchhiring.screen.HiringListScreen
+import com.example.fetchhiring.screen.HomeScreen
 import com.example.fetchhiring.viewmodel.HireViewModel
 
 @Composable
@@ -19,7 +19,7 @@ fun HireNavigation(viewModel: HireViewModel, modifier: Modifier) {
         startDestination = HireScreens.HomeScreen.name
     ) {
         composable(HireScreens.HomeScreen.name) {
-            HiringListScreen(navController = navController, viewModel = viewModel, modifier = modifier)
+            HomeScreen(navController = navController, viewModel = viewModel, modifier = modifier)
         }
 
         // ..../HireGroupedListScreen/listId=listId

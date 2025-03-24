@@ -37,7 +37,7 @@ import com.example.fetchhiring.viewmodel.HireViewModel
 import com.example.fetchhiring.viewmodel.UiState
 
 @Composable
-fun HiringListScreen(navController: NavController, viewModel: HireViewModel, modifier: Modifier = Modifier) {
+fun HomeScreen(navController: NavController, viewModel: HireViewModel, modifier: Modifier = Modifier) {
     val result = viewModel.hiringListState.collectAsStateWithLifecycle()
     when (val hireList = result.value) {
         is UiState.Loading -> {
