@@ -12,21 +12,21 @@ import com.example.fetchhiring.screen.HomeScreen
 import com.example.fetchhiring.viewmodel.HireViewModel
 
 @Composable
-fun HireNavigation(viewModel: HireViewModel, modifier: Modifier) {
+fun HireNavigation(viewModel: HireViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = HireScreens.HomeScreen.name
     ) {
         composable(HireScreens.HomeScreen.name) {
-            HomeScreen(navController = navController, viewModel = viewModel, modifier = modifier)
+            HomeScreen(navController = navController, viewModel = viewModel)
         }
 
         // ..../HireGroupedListScreen/listId=listId
         composable(HireScreens.HireGroupDetailsScreen.name+"/{listId}",
             arguments = listOf(navArgument(name="listId") { type = NavType.IntType })
         ) { backStackEntry ->
-            HireGroupListDetailsScreen(viewModel, backStackEntry.arguments?.getInt("listId"), modifier, navController)
+            HireGroupListDetailsScreen(viewModel, backStackEntry.arguments?.getInt("listId") ?: 0, navController)
         }
 
     }
